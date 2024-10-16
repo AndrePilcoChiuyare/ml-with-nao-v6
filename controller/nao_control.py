@@ -22,9 +22,9 @@ def wake_up_nao():
     try:
         motion_proxy.wakeUp()
         posture_proxy.goToPosture("StandInit", 0.5)
-        speech_proxy.say("Hello! I'm ready to analyze your sentiment.")
+        speech_proxy.say("Hola! Estoy listo para escucharte.")
     except Exception as e:
-        print("Error waking up NAO:", e)
+        print("Error al despertar a NAO:", e)
 
 # Make NAO dance
 def nao_dance():
@@ -36,7 +36,7 @@ def nao_dance():
         # Play the audio file (soundId is returned)
         sound_id = audio_proxy.playFile(audio_file_path)
     except Exception as e:
-        print("Error making NAO dance:", e)
+        print("Error de NAO al bailar:", e)
 
 # Function to get sentiment from ML service
 def get_sentiment(text):
@@ -66,46 +66,49 @@ def main():
     while True:
         try:
             
-            print("\nOptions:")
-            print("1. Speak and analyze sentiment (press 'S').")
-            print("2. Exit (press 'E').")
+            print("\nOpciones:")
+            print("1. Cuentame como te sientes... (presiona 'S').")
+            print("2. Salir (presiona 'E').")
             
             # Esperar entrada del usuario
-            user_choice = raw_input("Select an option: ").strip().lower()
+            user_choice = raw_input("Selecciona una opcion: ").strip().lower()
 
             if user_choice == 's':
-                print("\nYou have selected 'S'. Getting ready to listen.")
-                print("You can talk now...")
+                print("\nHas seleccionado 'S'. Estoy preparandome para escucharte.")
+                print("Listo, cuentame tu vida...")
+                speech_proxy.say("Listo, cuentame tu vida..")
                 user_input = get_recognized_text()
-                if user_input:
-                    print("Recognized text: ", user_input)
-                    
+                if user_input and user_input != "No se pudo reconocer el discurso.":
+                    print("Texto reconocido: ", user_input)
                     
                     sentiment = get_sentiment(user_input)
-                    print("Sentiment:", sentiment)
+                    print("Sentimiento:", sentiment)
 
-                    
                     if sentiment == "Positive":
                         nao_dance()
+                    else:
+                        speech_proxy.say("Pobrecito")
                 else:
-                    print("No text could be recognized.")
+                    print("No entendi :(")
+                    speech_proxy.say("No entendi...")
 
             elif user_choice == 'e':
-                print("\nYou have selected 'E'. Exiting the program...")
+                print("\nHas seleccionado 'E' para salir. Adios!")
+                speech_proxy.say("Adios!")
                 break
 
             else:
-                print("Invalid option. Please select 'S' to talk or 'E' to exit.")
+                print("Opcion invalida. Por favor selecciona 'S' para escucharte o 'E' para salir.")
 
         except Exception as e:
-            print("An unexpected error has occurred:", e)
+            print("Un error inesperado ha ocurrido:", e)
 
     # Rest NAO
     try:
         posture_proxy.goToPosture("Sit", 0.5)
         motion_proxy.rest()
     except Exception as e:
-        print("Error putting NAO to rest:", e)
+        print("Error al poner de NAO al descansar:", e)
 
 if __name__ == "__main__":
     main()
