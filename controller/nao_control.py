@@ -2,6 +2,7 @@ import requests
 from naoqi import ALProxy
 import time
 import os
+import random as rd
 
 # NAO Robot Configuration
 NAO_IP = "127.0.0.1"  # Replace with your NAO's IP address
@@ -31,12 +32,30 @@ def nao_dance():
     try:
         # Path to the audio file (ensure the file exists at the specified location)
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        audio_file_path = os.path.join(script_dir, "..", "audio", "sampleaudio.ogg")
+        music_number = rd.choice([1, 2, 3])
+        music_file = "happy" + str(music_number) + ".ogg"
+        audio_file_path = os.path.join(script_dir, "..", "audio", music_file)
 
         # Play the audio file (soundId is returned)
         sound_id = audio_proxy.playFile(audio_file_path)
     except Exception as e:
         print("Error de NAO al bailar:", e)
+
+def nao_suffer():
+    try:
+        posture_proxy.goToPosture("LyingBelly", 1.0)
+        # Path to the audio file (ensure the file exists at the specified location)
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        music_number = rd.choice([1, 2, 3])
+        music_file = "sad" + str(music_number) + ".ogg"
+        audio_file_path = os.path.join(script_dir, "..", "audio", music_file)
+
+        # Play the audio file (soundId is returned)
+        sound_id = audio_proxy.playFile(audio_file_path)
+
+        posture_proxy.goToPosture("StandInit", 0.5)
+    except Exception as e:
+        print("Error de NAO al sufrir:", e)
 
 # Function to get sentiment from ML service
 def get_sentiment(text):
@@ -87,7 +106,7 @@ def main():
                     if sentiment == "Positive":
                         nao_dance()
                     else:
-                        speech_proxy.say("Pobrecito")
+                        nao_suffer()
                 else:
                     print("No entendi :(")
                     speech_proxy.say("No entendi...")
@@ -105,7 +124,6 @@ def main():
 
     # Rest NAO
     try:
-        posture_proxy.goToPosture("Sit", 0.5)
         motion_proxy.rest()
     except Exception as e:
         print("Error al poner de NAO al descansar:", e)
