@@ -126,19 +126,23 @@ def dance0():
 
         # Estirar ambos brazos hacia adelante
         arm_names = ["LShoulderPitch", "RShoulderPitch"]  # Hombros para mover brazos hacia adelante
+        elbow_names = ["LElbowRoll", "RElbowRoll"]  # Mover ambos codos
         arm_angles = [0.0, 0.0]  # angulos en radianes (0 = brazos estirados hacia adelante)
         fractionMaxSpeed = 0.3
         motion_proxy.setAngles(arm_names, arm_angles, fractionMaxSpeed)
+        elbow_angles = [-1.0, 1.0]  # angulos en radianes para doblar los codos
 
         # Movimiento de arriba a abajo por 9 segundos
         for _ in range(6):  # Repetir el movimiento varias veces
+            motion_proxy.setAngles(elbow_names, elbow_angles, fractionMaxSpeed)
+
             # Mover los brazos hacia arriba
-            arm_angles = [-0.5, -0.5]  # Mover los brazos hacia arriba (angulo negativo)
+            arm_angles = [-0.5, 0.5]  # Mover los brazos hacia arriba (angulo negativo)
             motion_proxy.setAngles(arm_names, arm_angles, fractionMaxSpeed)
             time.sleep(0.75)
 
             # Mover los brazos hacia abajo
-            arm_angles = [0.5, 0.5]  # Mover los brazos hacia abajo (angulo positivo)
+            arm_angles = [0.5, -0.5]  # Mover los brazos hacia abajo (angulo positivo)
             motion_proxy.setAngles(arm_names, arm_angles, fractionMaxSpeed)
             time.sleep(0.75)
 
