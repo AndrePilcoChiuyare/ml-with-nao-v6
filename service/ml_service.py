@@ -1,7 +1,7 @@
 from transformers import BertForSequenceClassification, BertTokenizer
 from flask import Flask, request, jsonify
 import torch
-from voice_recognition import recognize_from_microphone  # Importamos la función de voice_recognition
+from voice_recognition import recognize_from_microphone  # Importing the function from the voice_recognition.py file
 
 app = Flask(__name__)
 
@@ -35,7 +35,7 @@ def predict():
 # Route for speech recognition
 @app.route('/recognize', methods=['GET'])
 def recognize():
-    text = recognize_from_microphone()  # Llamamos a la función importada
+    text = recognize_from_microphone()  # Calling the imported function
     return jsonify({'recognized_text': text})
 
 if __name__ == '__main__':
