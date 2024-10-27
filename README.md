@@ -92,6 +92,11 @@ Antes de ejecutar el sistema, es necesario descargar el software [Choregraphe](h
     <img src="./readme-assets/conexion.png" alt="Conexion al emulador">
 </div>
 
+2. Antes de utilizar el sistema, es necesario crear un archivo `.env` en donde se deben especificar la llave API y la región para el servicio de reconocimiento de voz de Azure (Para mayor información, recurrir a la [documentación oficial de Microsoft](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/get-started-speech-to-text?tabs=windows%2Cterminal&pivots=programming-language-python))
+<div align="center">
+    <img src="./readme-assets/api-azure.png" alt="Credenciales Azure">
+</div>
+
 4. Ahora, es necesario abrir la carpeta `nao-project` en Visual Studio Code, en donde se deben abrir dos terminales PowerShell.
 <div align="center">
     <img src="./readme-assets/terminal.png" alt="Terminales">
