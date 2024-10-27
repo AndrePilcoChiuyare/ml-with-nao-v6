@@ -6,6 +6,10 @@
 - Renato Alberto Alcalde Gonzalez - U20191e742
 
 ## Diagrama de arquitectura de componentes
+<div align="center">
+    <img src="./diagrama-arquitectura-componentes.png" alt="Diagrama de arquitectura de componentes">
+</div>
+
 El diagrama representa la arquitectura de componentes diseñada para integrar un modelo de inteligencia artificial en el Robot NAO, permitiéndole realizar acciones específicas basadas en los resultados del modelo. La interacción comienza cuando el usuario selecciona, a través de un menú de opciones, el proceso de análisis de sentimiento proporcionado por `nao_control.py`. Para esto, el robot NAO indica que el usuario puede comenzar a hablar y procesa dicha entrada de voz en el módulo de procesamiento de lenguaje natural, el cual está administrado por el componente `ml_service.py`.
 
 En primer lugar, el módulo `voice_recognition.py` convierte la voz en texto utilizando el servicio Azure Speech to Text y realiza ajustes para garantizar la precisión del texto transcrito. Luego, el texto es enviado a `ml_service.py`, el cual ejecuta el modelo SaBERT (modelo preentrenado basado en BERT y afinado para el análisis de sentimiento en español) para analizar el texto, clasificar el sentimiento como positivo o negativo.
