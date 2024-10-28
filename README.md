@@ -5,6 +5,8 @@
 - Marco Antonio Fuentes Rivera Onofre - U20211b693
 - Renato Alberto Alcalde Gonzalez - U20191e742
 
+**Video de explicación y demostración:** https://www.youtube.com/watch?v=4JFc3eDaaZs
+
 ## Objetivo de Machine Learning:
 `Clasificar el sentimiento de un mensaje dado por voz a través de un modelo preentrenado, cuya salida sirva como entrada para el robot NAO.`
 
