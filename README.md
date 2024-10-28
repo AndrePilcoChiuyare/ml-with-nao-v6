@@ -83,7 +83,7 @@ Antes de ejecutar el sistema, es necesario descargar el software [Choregraphe](h
 
 1. Dentro de la carpeta descomprimida, ejecutar `naoqi-bin.exe` dentro de la carpeta `bin`, el cual es el emulador de NAO.
 <div align="center">
-    <img src="./readme-assets/consola.png" alt="Emulador de NAO">
+    <img src="./readme-assets/naoqi-bin.png" alt="Emulador de NAO">
 </div>
 
 2. Dentro de la carpeta descomprimida ejecutar `choregraphe.bat`. Una vez dentro, se debe ingresar a `Editar > Preferencias` y seleccionar el model de robot `NAO H25 (V6)`. De preferencia, cerrar y volver a abrir `Choregraphe` para que los cambios se realicen correctamente.
